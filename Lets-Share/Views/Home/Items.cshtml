@@ -1,0 +1,68 @@
+﻿@model AddItem
+
+
+<div class="container">
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-light mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="col text-center">
+                            <h5 class="card-title">Adicione novos itens!</h5>
+                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#addItems">Adicionar</button>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addItems" role="dialog" data-keyboard="false" data-backdrop="static">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Cadastro de Item</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                    </div>
+                                    <form method="post" asp-controller="Home" asp-action="Items">
+                                        <div class="modal-body">
+
+
+                                            <div asp-validation-summary="All"></div>
+
+                                            <div class="form-group">
+                                                <label asp-for="Name">Nome</label>
+                                                <input class="form-control" placeholder="Nome do item" asp-for="Name" />
+                                                <span asp-validation-for="Name"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="Description">Descrição</label>
+                                                <input class="form-control" placeholder="Descrição do item" asp-for="Description" />
+                                                <span asp-validation-for="Description"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Available">Este item está disponível?</label>
+                                                <select class="form-control" asp-for="Available">
+                                                    <option value="">Escolha a opção</option>
+                                                    <option value="true">Sim</option>
+                                                    <option value="false">Não</option>
+                                                </select>
+                                                <span asp-validation-for="Available"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
