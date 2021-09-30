@@ -50,11 +50,13 @@ namespace Lets_Share.Controllers
 
             if (ModelState.IsValid)
             {
-                _repositorio.Add(item);
+                _repositorio.AddOrUpdate(item);
+
                 return RedirectToAction("Items");
             }
 
             return View(item);
         }
+
     }
 }

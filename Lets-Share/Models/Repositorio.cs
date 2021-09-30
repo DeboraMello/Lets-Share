@@ -15,16 +15,19 @@ namespace LetsRsvp.Models
 
         public IQueryable<AddItem> ItemSet { get => _context.ItemSet; }
 
-    public void Add(AddItem item)
-        {
 
-            _context.ItemSet.Add(item);            
-            _context.SaveChanges();
-        }
 
-        public void Update(AddItem item)
+        public void AddOrUpdate(AddItem item)
         {
-            _context.ItemSet.Update(item);
+            var retorno = _context.ItemSet.FirstOrDefault(x => x.Id == item.Id);
+            if (retorno == null)
+            {
+                _context.ItemSet.Add(item);
+            }
+            else
+            {
+                _context.ItemSet.Update(item);
+            }
             _context.SaveChanges();
         }
 
