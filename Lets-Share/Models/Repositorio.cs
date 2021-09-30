@@ -15,7 +15,7 @@ namespace LetsRsvp.Models
 
         public IQueryable<AddItem> ItemSet { get => _context.ItemSet; }
 
-        public void Add(AddItem item)
+    public void Add(AddItem item)
         {
 
             _context.ItemSet.Add(item);            

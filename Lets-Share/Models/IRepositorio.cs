@@ -9,6 +9,7 @@ namespace LetsRsvp.Models
     public interface IRepositorio
     {
         IQueryable<AddItem> ItemSet { get; }
+
         void Add(AddItem item);
         void Update(AddItem item);
         void Remove(AddItem item);

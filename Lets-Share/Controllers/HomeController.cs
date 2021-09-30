@@ -1,4 +1,5 @@
 ﻿using Lets_Share.Models;
+using Lets_Share.ViewModels;
 using LetsRsvp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -33,7 +34,14 @@ namespace Lets_Share.Controllers
 
         public IActionResult Items()
         {
-            return View();
+
+            var viewModel = new ItemsViewModel()
+            {
+                Items = _repositorio.ItemSet
+            };
+
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -43,7 +51,7 @@ namespace Lets_Share.Controllers
             if (ModelState.IsValid)
             {
                 _repositorio.Add(item);
-                return RedirectToAction("Index");
+                return RedirectToAction("Items");
             }
 
             return View(item);
