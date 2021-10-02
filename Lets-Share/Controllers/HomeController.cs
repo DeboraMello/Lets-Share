@@ -14,12 +14,10 @@ namespace Lets_Share.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IRepositorio _repositorio;
 
-        public HomeController(ILogger<HomeController> logger, IRepositorio repositorio)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _repositorio = repositorio;
         }
 
         public IActionResult Index()
@@ -30,32 +28,6 @@ namespace Lets_Share.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public IActionResult Items()
-        {
-
-            var viewModel = new ItemsViewModel()
-            {
-                Items = _repositorio.ItemSet
-            };
-
-
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public IActionResult Items(AddItem item)
-        {
-
-            if (ModelState.IsValid)
-            {
-                _repositorio.AddOrUpdate(item);
-
-                return RedirectToAction("Items");
-            }
-
-            return View(item);
         }
 
     }
