@@ -13,6 +13,7 @@ namespace LetsRsvp.Models
         {
         }
 
-      public DbSet<AddItem> ItemSet { get; set; }
+        public DbSet<AddItem> ItemSet { get; set; }
+        public DbSet<AddUser> UserSet { get; set; }
     }
 }

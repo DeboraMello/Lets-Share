@@ -1,0 +1,110 @@
+﻿@model Lets_Share.ViewModels.UsersViewModel
+
+@{ ViewBag.Title = "Users"; }
+
+
+<div class="container">
+    <div class="mt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card bg-light mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="col text-center">
+                            <h5 class="card-title">Adicione novos usuários!</h5>
+                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#addUsers">Adicionar</button>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addUsers" role="dialog" data-keyboard="false" data-backdrop="static">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Cadastro de Usuário</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                    </div>
+                                    <form method="post" asp-controller="User" asp-action="Index">
+                                        <div class="modal-body">
+
+
+                                            <div asp-validation-summary="All"></div>
+
+                                            <div class="form-group">
+                                                <label asp-for="User.FullName">Nome completo</label>
+                                                <input class="form-control" placeholder="Nome completo" asp-for="User.FullName" />
+                                                <span asp-validation-for="User.FullName"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="User.Mail">Email</label>
+                                                <input class="form-control" placeholder="Email" asp-for="User.Mail" />
+                                                <span asp-validation-for="User.Mail"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label asp-for="User.Phone">Telefone</label>
+                                                <input class="form-control" placeholder="Telefone" asp-for="User.Phone" />
+                                                <span asp-validation-for="User.Phone"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="mt-5">
+        <div class="row">
+            @foreach (var usr in Model.Users)
+            {
+<div class="col-md-4">
+    <div class="card mt-4 bg-light">
+        <div class="card-body">
+            <div class="col text-center">
+                <h5 class="card-title">@usr.FullName</h5>
+                <button type="button" class="btn btn-outline-info edit" data-id=@usr.Id>Editar</button>
+                <button type="button" class="btn btn-outline-danger delete" data-id=@usr.Id>Remover</button>
+            </div>
+        </div>
+    </div>
+</div>      }
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal fade"  role="dialog"/>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".edit").click(function () {
+                var id = $(this).attr("data-id");
+                console.log("id", id);
+                $("#modal").load("User/Edit/" + id, function () {
+                    $("#modal").modal();
+                })
+            });
+        })
+
+        $(".delete").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modal").load("User/Delete/" + id, function () {
+                $("#modal").modal();
+            })
+        });
+    </script>
+}
