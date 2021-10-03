@@ -34,7 +34,7 @@ namespace Lets_Share.Controllers
 
             if (ModelState.IsValid)
             {
-                _repositorio.AddOrUpdate(item);
+                _repositorio.Add(item);
 
                 return RedirectToAction("Index");
             }
@@ -56,11 +56,27 @@ namespace Lets_Share.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorio.AddOrUpdate(item);
+                _repositorio.Update(item);
 
                 return RedirectToAction("Index");
             }
             return View(item);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var teste = _repositorio.ItemSet;
+            AddItem item = _repositorio.ItemSet.FirstOrDefault(x => x.Id == id);
+
+            return View(item);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(AddItem item)
+        {
+            _repositorio.Remove(item);
+
+            return RedirectToAction("Index");
         }
     }
 }

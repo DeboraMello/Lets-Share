@@ -80,7 +80,7 @@
             <div class="col text-center">
                 <h5 class="card-title">@itm.Name</h5>
                 <button type="button" class="btn btn-outline-info edit" data-id=@itm.Id>Editar</button>
-                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteItems">Remover</button>
+                <button type="button" class="btn btn-outline-danger delete" data-id=@itm.Id>Remover</button>
             </div>
         </div>
     </div>
@@ -96,12 +96,18 @@
         $(function () {
             $(".edit").click(function () {
                 var id = $(this).attr("data-id");
-                console.log("id");
                 $("#modal").load("Item/Edit/" + id, function () {
-                    console.log("chamou modal")
                     $("#modal").modal();
                 })
             });
         })
+
+        $(".delete").click(function () {
+            var id = $(this).attr("data-id");
+            console.log("id", id);
+            $("#modal").load("Item/Delete/" + id, function () {
+                $("#modal").modal();
+            })
+        });
     </script>
 }

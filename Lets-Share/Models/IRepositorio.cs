@@ -10,7 +10,8 @@ namespace LetsRsvp.Models
     {
         IQueryable<AddItem> ItemSet { get; }
 
-        void AddOrUpdate(AddItem item);
+        void Add(AddItem item);
+        void Update(AddItem item);
         void Remove(AddItem item);
     }
 }
