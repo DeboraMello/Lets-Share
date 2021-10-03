@@ -12,6 +12,7 @@ namespace Lets_Share.Controllers
     public class ItemController : Controller
     {
         private readonly IRepositorio _repositorio;
+        private IQueryable<AddItem> SearchReturn;
         public ItemController(IRepositorio repositorio)
         {
             _repositorio = repositorio;
@@ -21,7 +22,8 @@ namespace Lets_Share.Controllers
 
             var viewModel = new ItemsViewModel()
             {
-                Items = _repositorio.ItemSet
+                Items = _repositorio.ItemSet,
+                Search = string.Empty
             };
 
 
@@ -77,6 +79,42 @@ namespace Lets_Share.Controllers
             _repositorio.Remove(item);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Search(ItemsViewModel viewModel)
+        {
+            if (!string.IsNullOrEmpty(viewModel.Search))
+            {
+                SearchReturn = _repositorio.ItemSet.Where(x => x.Name.Contains(viewModel.Search));
+                viewModel.Items = SearchReturn;
+            }
+            
+            return View(viewModel);
+        }
+
+        public IActionResult Rent()
+        {
+
+            var viewModel = new ItemsViewModel()
+            {
+                Items = _repositorio.ItemSet.Where(x => x.AvailableRent == true & x.AvailableBorrow == true),
+            };
+
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Rent(ItemsViewModel viewModel)
+        {
+            if (!string.IsNullOrEmpty(viewModel.Search))
+            {
+                SearchReturn = _repositorio.ItemSet.Where(x => x.Name.Contains(viewModel.Search) & x.AvailableRent == true & x.AvailableBorrow == true);
+                viewModel.Items = SearchReturn;
+            }
+
+            return View(viewModel);
         }
     }
 }

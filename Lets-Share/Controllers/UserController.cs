@@ -12,6 +12,7 @@ namespace Lets_Share.Controllers
     public class UserController : Controller
     {
         private readonly IRepositorio _repositorio;
+        private IQueryable<AddUser> SearchReturn;
         public UserController(IRepositorio repositorio)
         {
             _repositorio = repositorio;
@@ -74,6 +75,18 @@ namespace Lets_Share.Controllers
             _repositorio.Remove(user);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Search(UsersViewModel viewModel)
+        {
+            if (!string.IsNullOrEmpty(viewModel.Search))
+            {
+                SearchReturn = _repositorio.UserSet.Where(x => x.FullName.Contains(viewModel.Search));
+                viewModel.Users = SearchReturn;
+            }
+
+            return View(viewModel);
         }
     }
 }
