@@ -14,17 +14,34 @@ namespace Lets_Share.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IRepositorio _repositorio;
+        public HomeController(ILogger<HomeController> logger, IRepositorio repositorio)
         {
             _logger = logger;
+            _repositorio = repositorio;
         }
+
+        //public IActionResult Index()
+        //{
+
+        //    var viewModel = new ItemsViewModel()
+        //    {
+        //        Items = _repositorio.ItemSet.Where(x => (bool)(x.AvailableRent & x.AvailableBorrow == true));
+        //    };
+        //    return View(viewModel);
+        //}
 
         public IActionResult Index()
         {
-            return View();
-        }
 
+            var viewModel = new ItemsViewModel()
+            {
+                Items = _repositorio.ItemSet.Where(x => (bool)(x.AvailableRent & x.AvailableBorrow == true))
+            };
+
+
+            return View(viewModel);
+        }
         public IActionResult Privacy()
         {
             return View();

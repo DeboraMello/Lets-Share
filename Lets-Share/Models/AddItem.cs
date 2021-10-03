@@ -16,7 +16,10 @@ namespace Lets_Share.Models
         [Required(ErrorMessage = "Campo descrição é obrigatório")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Campo disponibilidade é obrigatório")]
-        public bool? Available { get; set; }
+        [Required(ErrorMessage = "Campo aluguel é obrigatório")]
+        public bool? AvailableRent { get; set; }
+
+        [Required(ErrorMessage = "Campo empréstimo é obrigatório")]
+        public bool? AvailableBorrow { get; set; }
     }
 }

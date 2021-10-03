@@ -31,13 +31,22 @@
                         <span asp-validation-for="Description"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Available">Este item está disponível?</label>
-                        <select class="form-control" asp-for="Available">
+                        <label asp-for="AvailableRent">Este item está disponível para alugar?</label>
+                        <select class="form-control" asp-for="AvailableRent">
                             <option value="">Escolha a opção</option>
                             <option value="true">Sim</option>
                             <option value="false">Não</option>
                         </select>
-                        <span asp-validation-for="Available"></span>
+                        <span asp-validation-for="AvailableRent"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AvailableBorrow">Este item pode ser emprestado?</label>
+                        <select class="form-control" asp-for="AvailableBorrow">
+                            <option value="">Escolha a opção</option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
+                        </select>
+                        <span asp-validation-for="AvailableBorrow"></span>
                     </div>
                 </div>
                 <div class="modal-footer">

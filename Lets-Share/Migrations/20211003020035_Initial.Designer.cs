@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lets_Share.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210928184708_Initial")]
+    [Migration("20211003020035_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,11 @@ namespace Lets_Share.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool?>("Available")
+                    b.Property<bool?>("AvailableBorrow")
+                        .IsRequired()
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("AvailableRent")
                         .IsRequired()
                         .HasColumnType("bit");
 
@@ -43,6 +47,30 @@ namespace Lets_Share.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ItemSet");
+                });
+
+            modelBuilder.Entity("Lets_Share.Models.AddUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserSet");
                 });
 #pragma warning restore 612, 618
         }

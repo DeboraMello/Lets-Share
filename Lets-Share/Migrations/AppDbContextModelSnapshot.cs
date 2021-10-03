@@ -26,7 +26,11 @@ namespace Lets_Share.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool?>("Available")
+                    b.Property<bool?>("AvailableBorrow")
+                        .IsRequired()
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("AvailableRent")
                         .IsRequired()
                         .HasColumnType("bit");
 
