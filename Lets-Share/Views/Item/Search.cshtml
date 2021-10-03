@@ -1,0 +1,48 @@
+﻿@model Lets_Share.ViewModels.ItemsViewModel
+
+@{ ViewBag.Title = "Items"; }
+
+<div><a asp-controller="Item" asp-action="Index" class="btn btn-outline-success my-2 my-sm-0">Retornar</a></div>
+
+<div class="container">
+    <div class="mt-5">
+        <div class="row">
+            @foreach (var itm in Model.Items)
+            {
+<div class="col-md-4">
+    <div class="card mt-4 bg-light">
+        <div class="card-body">
+            <div class="col text-center">
+                <h5 class="card-title">@itm.Name</h5>
+                <button type="button" class="btn btn-outline-info edit" data-id=@itm.Id>Editar</button>
+                <button type="button" class="btn btn-outline-danger delete" data-id=@itm.Id>Remover</button>
+            </div>
+        </div>
+    </div>
+</div>      }
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal fade"  role="dialog"/>
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".edit").click(function () {
+                var id = $(this).attr("data-id");
+                $("#modal").load("Edit/" + id, function () {
+                    $("#modal").modal();
+                })
+            });
+        })
+
+        $(".delete").click(function () {
+            var id = $(this).attr("data-id");
+            console.log("id", id);
+            $("#modal").load("Delete/" + id, function () {
+                $("#modal").modal();
+            })
+        });
+    </script>
+}
