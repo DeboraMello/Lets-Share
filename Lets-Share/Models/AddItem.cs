@@ -21,5 +21,8 @@ namespace Lets_Share.Models
 
         [Required(ErrorMessage = "Campo empréstimo é obrigatório")]
         public bool? AvailableBorrow { get; set; }
+
+        [Required(ErrorMessage = "Campo data de devolução é obrigatório")]
+        public DateTime ReturnDate { get; set; }
     }
 }

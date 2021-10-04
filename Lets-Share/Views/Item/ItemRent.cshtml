@@ -4,6 +4,7 @@
     ViewBag.Title = "ItemRent";
 }
 <!-- Modal -->
+
 <div class="container">
     <div class="modal-dialog">
 
@@ -19,18 +20,23 @@
 
                     <div class="form-group">
                         <label asp-for="Name">Nome</label>
-                        <input class="form-control" placeholder="Nome do item" asp-for="Name" readonly/>
+                        <input class="form-control" placeholder="Nome do item" asp-for="Name" readonly />
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Description">Descrição</label>
-                        <input class="form-control" placeholder="Descrição" asp-for="Description" readonly/>
+                        <input class="form-control" placeholder="Descrição" asp-for="Description" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReturnDate">Data de devolução</label>
+                        <input class="form-control" type="date" placeholder="Devolução" asp-for="ReturnDate" value="10/10/2021"/>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Confirmar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
+
             </form>
         </div>
 
