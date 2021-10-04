@@ -21,16 +21,6 @@ namespace Lets_Share.Controllers
             _repositorio = repositorio;
         }
 
-        //public IActionResult Index()
-        //{
-
-        //    var viewModel = new ItemsViewModel()
-        //    {
-        //        Items = _repositorio.ItemSet.Where(x => (bool)(x.AvailableRent & x.AvailableBorrow == true));
-        //    };
-        //    return View(viewModel);
-        //}
-
         public IActionResult Index()
         {
 
@@ -42,6 +32,7 @@ namespace Lets_Share.Controllers
 
             return View(viewModel);
         }
+        
         public IActionResult Privacy()
         {
             return View();

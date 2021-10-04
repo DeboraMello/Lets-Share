@@ -22,12 +22,27 @@
                         <div class="card-body">
                             <div class="col text-center">
                                 <h5 class="card-title">@itm.Name</h5>
-                                <button type="button" class="btn btn-outline-info edit" data-id=@itm.Id>Alugar</button>
-                                <button type="button" class="btn btn-outline-danger delete" data-id=@itm.Id>Cancelar</button>
+                                <button type="button" class="btn btn-outline-info ItemRent" data-id=@itm.Id>Alugar</button>
                             </div>
                         </div>
                     </div>
-                </div>      }
+                </div>}
         </div>
     </div>
 </div>
+
+<div id="modal" class="modal fade" role="dialog" />
+
+@section scripts{
+    <script>
+        $(function () {
+            $(".ItemRent").click(function () {
+                var id = $(this).attr("data-id");
+                console.log("id", id);
+                $("#modal").load("Item/ItemRent/" + id, function () {
+                    $("#modal").modal();
+                })
+            });
+        })
+    </script>
+}

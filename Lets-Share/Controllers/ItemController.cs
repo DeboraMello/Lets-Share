@@ -89,7 +89,7 @@ namespace Lets_Share.Controllers
                 SearchReturn = _repositorio.ItemSet.Where(x => x.Name.Contains(viewModel.Search));
                 viewModel.Items = SearchReturn;
             }
-            
+
             return View(viewModel);
         }
 
@@ -115,6 +115,24 @@ namespace Lets_Share.Controllers
             }
 
             return View(viewModel);
+        }
+        public IActionResult ItemRent(int id)
+        {
+            AddItem item = _repositorio.ItemSet.FirstOrDefault(x => x.Id.Equals(id));
+
+            return View(item);
+        }
+
+        [HttpPost]
+        public IActionResult ItemRent(AddItem item)
+        {
+            item.AvailableRent = false;
+            item.AvailableBorrow = true;
+            _repositorio.Update(item);
+
+
+            return RedirectToAction("Rent");
+
         }
     }
 }
