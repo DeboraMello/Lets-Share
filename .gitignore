@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/Lets-Share/Migrations/20211004010728_Inicial.cs
+/Lets-Share/Migrations/20211004010728_Inicial.Designer.cs
