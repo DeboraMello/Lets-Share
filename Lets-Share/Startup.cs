@@ -32,7 +32,7 @@ namespace Lets_Share
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
-                options.LogTo(Console.WriteLine, LogLevel.Debug);
+                //options.LogTo(Console.WriteLine, LogLevel.Debug);
             });
 
             services.AddScoped<IRepositorio, Repositorio>();

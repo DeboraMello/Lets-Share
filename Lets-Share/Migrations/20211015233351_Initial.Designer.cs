@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lets_Share.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211004025352_AddRental")]
-    partial class AddRental
+    [Migration("20211015233351_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
